@@ -1,27 +1,25 @@
-const totalAmountElement = document.getElementById('total-amount');
+// 寄付するボタンの要素を取得
+const donateButton = document.getElementById("donate-button");
 
-function updateTotalAmount(amount) {
-  totalAmountElement.textContent = amount + "円";
-}
+// 寄付するボタンがクリックされたときの処理を登録
+donateButton.addEventListener("click", function() {
+  // いくら寄付するかの入力欄の要素を取得
+  const amountInput = document.getElementById("donation-amount");
 
-function generateRandomAmount() {
-  return Math.floor(Math.random() * 6450) + 34;
-}
+  // 入力された寄付金額を取得
+  const donationAmount = parseInt(amountInput.value, 10);
 
-let totalAmount = 0;
+  // 現在の寄付総額を取得
+  const currentTotal = parseInt(totalDonationElement.textContent, 10);
 
-function handleDonationSubmit(event) {
-  event.preventDefault();
-  const inputElement = document.getElementById('donation-amount');
-  const amount = parseInt(inputElement.value, 10);
-  if (amount >= 334) {
-    totalAmount += amount + generateRandomAmount();
-    updateTotalAmount(totalAmount);
-    inputElement.value = '';
-  } else {
-    alert('寄付金額は334円以上にしてください。');
-  }
-}
+  // 新しい寄付総額を計算
+  const newTotal = currentTotal + donationAmount;
 
-const formElement = document.querySelector('form');
-formElement.addEventListener('submit', handleDonationSubmit);
+  // 寄付総額を更新
+  totalDonationElement.textContent = newTotal.toLocaleString();
+
+  // メーターバーを更新
+  const meterBar = document.getElementById("meter-bar");
+  const meterWidth = (newTotal / 100000) * 100; // 最大値を100,000円として計算
+  meterBar.style.width = meterWidth + "%";
+});

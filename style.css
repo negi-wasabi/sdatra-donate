@@ -1,65 +1,72 @@
 body {
-    font-family: sans-serif;
-    margin: 0;
+  margin: 0;
+  font-family: sans-serif;
 }
 
 header {
-    background-color: #f2f2f2;
-    padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #8acae7;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-h1 {
-    margin: 0;
+.logo img {
+  display: block;
+  height: auto;
+  max-width: 100%;
 }
 
-main {
-    padding: 16px;
+.donate-form {
+  display: flex;
+  align-items: center;
 }
 
-section {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin-bottom: 16px;
+.donate-form label {
+  margin-right: 10px;
 }
 
-h2 {
-    margin-top: 0;
+.donate-form input[type="number"] {
+  width: 100px;
 }
 
-form {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-top: 16px;
+.donate-form button {
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-label {
-    flex-basis: 100%;
+.meter {
+  margin: 50px auto;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
 }
 
-input[type=number] {
-    margin-right: 16px;
+.meter-bar {
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
 }
 
-button[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 4px;
-    cursor: pointer;
+.meter-bar:before {
+  content: "";
+  display: block;
+  height: 100%;
+  background-color: #f44336;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  transition: width 1s;
 }
 
-button[type=submit]:hover {
-    background-color: #3e8e41;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    padding: 16px;
-    text-align: center;
+.meter-text {
+  margin-top: 10px;
 }

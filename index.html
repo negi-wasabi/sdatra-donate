@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>シン・スダトラマン</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>シン・スダトラマン　クラウドファンディング</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>自主制作映画「シン・スダトラマン」</h1>
-        <img src="https://photos.app.goo.gl/MuLdupdz2Qff15Ks5" alt="シン・スダトラマンのロゴ">
-    </header>
-    <main>
-        <section>
-            <h2>クラウドファンディングに参加して応援しよう！</h2>
-            <p>現在の寄付総額：<span id="total-amount"></span>円</p>
-            <form>
-                <label for="donation-amount">いくら寄付しますか？（334円から）</label>
-                <input type="number" id="donation-amount" name="donation-amount" min="334" required>
-                <button type="submit">寄付する</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>&copy;2023 シン・スダトラマン製作委員会</p>
-    </footer>
-    <script src="script.js"></script>
+  <header>
+    <div class="logo">
+      <img src="sdalogo.png" alt="シン・スダトラマン" width="200">
+    </div>
+    <div class="donate-form">
+      <label for="donation-amount">いくら寄付しますか？</label>
+      <input type="number" id="donation-amount" name="donation-amount" value="334" min="334">
+      <button id="donate-button">寄付する</button>
+    </div>
+  </header>
+  <main>
+    <div class="meter">
+      <div class="meter-bar" id="meter-bar"></div>
+      <div class="meter-text">現在の寄付総額：<span id="total-donation"></span>円</div>
+    </div>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>

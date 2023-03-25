@@ -1,35 +1,31 @@
-// 寄付金額の初期値を設定
-let totalDonation = 334;
-
-// ランダムな金額を生成
-function getRandomAmount() {
-  const min = 34;
-  const max = 6482;
-  const randomAmount = Math.floor(Math.random() * (max - min + 1)) + min;
-  return randomAmount;
-}
-
-// 寄付ボタンがクリックされた時の処理
-function donate() {
-  // 入力された寄付金額を取得
-  const inputDonation = parseInt(document.getElementById('donation-input').value);
-
-  // 入力された寄付金額が数値かつ1以上である場合、寄付金額を加算する
-  if (!isNaN(inputDonation) && inputDonation >= 1) {
-    totalDonation += inputDonation;
-    document.getElementById('donation-amount').textContent = `${totalDonation}円`;
-  }
-
-  // ランダムな金額を加算する
-  const randomAmount = getRandomAmount();
-  totalDonation += randomAmount;
-  document.getElementById('donation-amount').textContent = `${totalDonation}円`;
-
-  // 寄付総額バーの更新
-  const donationBar = document.getElementById('donation-bar');
-  donationBar.style.width = `${(totalDonation / 100000) * 100}%`;
-}
-
-// 寄付ボタンを取得してクリックイベントを追加
-const donateButton = document.getElementById('donate-button');
-donateButton.addEventListener('click', donate);
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>シン・スダトラマン - クラウドファンディング</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js"></script>
+</head>
+<body>
+	<header>
+		<img src="sdalogo.png" alt="シン・スダトラマン">
+		<h1>シン・スダトラマン - クラウドファンディング</h1>
+	</header>
+	<main>
+		<section>
+			<h2>今すぐ寄付をしよう！</h2>
+			<p>寄付総額：<span id="total-donations">334</span>円</p>
+			<div class="progress-bar">
+				<div id="progress"></div>
+			</div>
+			<form>
+				<label for="name-input">名前：</label>
+				<input type="text" id="name-input">
+				<label for="donation-input">寄付金額：</label>
+				<input type="number" id="donation-input" min="1">
+				<button type="button" onclick="addDonation()">寄付する</button>
+			</form>
+		</section>
+	</main>
+</body>
+</html>

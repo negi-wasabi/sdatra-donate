@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>シン・スダトラマンクラウドファンディング</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <title>シン・スダトラマン</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<header>
-		<img src="sdalogo.png" alt="シン・スダトラマン">
-		<h1>クラウドファンディング</h1>
-	</header>
-	
-	<main>
-		<div id="donate-meter">
-			<div id="donate-level"></div>
-			<p id="donate-percentage">0%</p>
-			<p id="total-amount">寄付総額：¥334</p>
-		</div>
-		
-		<form>
-			<label for="donate-amount">寄付する金額：</label>
-			<input type="number" id="donate-amount" name="donate-amount">
-			<button type="button" id="donate-btn">寄付する</button>
-		</form>
-		
-		<form>
-			<label for="donor-name">名前：</label>
-			<input type="text" id="donor-name" name="donor-name">
-		</form>
-	</main>
-	
-	<footer>
-		<p>© 2023 シン・スダトラマン制作委員会</p>
-	</footer>
-	
-	<script src="script.js"></script>
+  <header>
+    <div class="logo">
+      <img src="sdalogo.png" alt="シン・スダトラマン">
+    </div>
+    <div class="meter">
+      <div class="progress"></div>
+      <div class="text">
+        <span class="total-amount">0</span>円 / 30億円（<span class="achievement">0%</span>）
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="donation-form">
+      <div class="donation-amount">
+        <label for="donate-num">寄付金額：</label>
+        <input type="number" id="donate-num" min="0" step="100" value="0">
+        <span>円</span>
+      </div>
+      <div class="donation-name">
+        <label for="donator-name">お名前：</label>
+        <input type="text" id="donator-name">
+      </div>
+      <button id="donate-btn">寄付する</button>
+    </div>
+  </main>
+  <footer>
+    <div class="total-donations">
+      <p>寄付総額：<span class="total-amount">0</span>円</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>

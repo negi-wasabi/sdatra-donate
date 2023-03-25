@@ -1,90 +1,118 @@
-/* 全体の背景色を設定 */
+/* 全体 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: #f8f8f8;
+  background-color: #F8F8F8;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* ヘッダーのスタイルを設定 */
-header {
-  background-color: #1c1c1c;
-  color: #ffffff;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* ロゴ画像のスタイルを設定 */
-header img {
-  width: 150px;
-  height: auto;
-}
-
-/* メインコンテンツのスタイルを設定 */
-main {
-  max-width: 800px;
+.container {
+  max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px;
 }
 
-/* 寄付フォームのスタイルを設定 */
-#donation-form {
+/* ロゴ */
+.logo {
+  display: block;
+  margin: 0 auto 40px;
+  width: 200px;
+  height: 200px;
+  background-image: url('./sdalogo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* タイトル */
+.title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+/* フォーム */
+.form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
 }
 
-/* 寄付フォームのラベルのスタイルを設定 */
-#donation-form label {
+.form-input {
+  padding: 8px;
+  font-size: 16px;
+  margin-bottom: 16px;
+  border: 2px solid #333;
+  border-radius: 4px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #0077FF;
+}
+
+.form-label {
+  font-size: 16px;
   font-weight: bold;
+  margin-bottom: 8px;
 }
 
-/* 寄付フォームの入力欄のスタイルを設定 */
-#donation-input {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #cccccc;
+.form-button {
+  padding: 8px;
   font-size: 16px;
-}
-
-/* 寄付ボタンのスタイルを設定 */
-#donate-button {
-  background-color: #1c1c1c;
-  color: #ffffff;
-  padding: 10px 20px;
+  font-weight: bold;
+  color: #FFF;
+  background-color: #0077FF;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-/* 寄付総額のスタイルを設定 */
-#donation-amount {
+.form-button:hover {
+  background-color: #005CE6;
+}
+
+/* 募金総額表示 */
+.donation-total {
+  text-align: center;
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
+  color: #333;
+  margin-bottom: 16px;
 }
 
-/* 寄付総額バーのスタイルを設定 */
-#donation-bar {
-  height: 30px;
-  background-color: #b6c2d9;
+/* メーターバー */
+.meter {
+  width: 100%;
+  height: 20px;
+  background-color: #EEE;
   border-radius: 10px;
-  transition: width 0.5s ease;
+  margin-bottom: 16px;
+  overflow: hidden;
 }
 
-/* 寄付総額バー（色が変わる部分）のスタイルを設定 */
-#donation-bar-filled {
-  height: 30px;
-  background-color: #1c1c1c;
+.meter-bar {
+  height: 100%;
+  background-color: #0077FF;
   border-radius: 10px;
-  transition: width 0.5s ease;
 }
 
-/* フッターのスタイルを設定 */
-footer {
-  background-color: #1c1c1c;
-  color: #ffffff;
-  padding: 20px;
-  text-align: center;
+.meter-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.meter-text span:first-child {
+  margin-right: 8px;
+}
+
+.meter-text span:last-child {
+  margin-left: 8px;
 }

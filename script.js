@@ -1,35 +1,57 @@
-// DOM Elements
-const totalDonation = document.getElementById('total-donation');
-const donationForm = document.getElementById('donation-form');
-const donationAmount = document.getElementById('donation-amount');
-const donorName = document.getElementById('donor-name');
-const meterFill = document.getElementById('meter-fill');
-const meterLabel = document.getElementById('meter-label');
+// 募金総額の初期値を設定
+let totalDonations = 334;
 
-// Initial values
-let donationTotal = 334;
-let donationGoal = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
-meterLabel.textContent = `${donationTotal}/${donationGoal}`;
+// 募金金額をランダムに生成する関数
+function generateDonationAmount() {
+  return Math.floor(Math.random() * 6450) + 34;
+}
 
-// Add random donation amount after a random delay
-setTimeout(() => {
-  const randomAmount = Math.floor(Math.random() * (6482 - 34 + 1)) + 34;
-  donationTotal += randomAmount;
-  totalDonation.textContent = `¥${donationTotal.toLocaleString()}`;
-  meterFill.style.width = `${(donationTotal/donationGoal)*100}%`;
-  meterLabel.textContent = `${donationTotal.toLocaleString()}/${donationGoal.toLocaleString()}`;
-}, Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000);
+// 募金総額を更新する関数
+function updateTotalDonations(amount) {
+  totalDonations += amount;
+  document.getElementById("total-donations").innerHTML = totalDonations.toLocaleString();
+  updateMeter(totalDonations);
+}
 
-// Add event listener to the donation form
-donationForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const donation = Number(donationAmount.value);
-  if (donation && donorName.value) {
-    donationTotal += donation;
-    totalDonation.textContent = `¥${donationTotal.toLocaleString()}`;
-    meterFill.style.width = `${(donationTotal/donationGoal)*100}%`;
-    meterLabel.textContent = `${donationTotal.toLocaleString()}/${donationGoal.toLocaleString()}`;
-    donationAmount.value = '';
-    donorName.value = '';
+// メーターを更新する関数
+function updateMeter(amount) {
+  const maxAmount = 3000000000; // メーターの最大値
+  const meterValue = Math.min(amount / maxAmount * 100, 100); // メーターの現在値
+  document.getElementById("meter").value = meterValue;
+  document.getElementById("meter-value").innerHTML = meterValue.toFixed(2) + "%";
+}
+
+// 寄付ボタンがクリックされたときの処理
+function donate() {
+  const amount = parseInt(document.getElementById("donation-amount").value);
+  const name = document.getElementById("name").value;
+  if (!isNaN(amount) && name) {
+    updateTotalDonations(amount);
+    alert(name + "さん、" + amount.toLocaleString() + "円の寄付ありがとうございます！");
+  } else {
+    alert("金額と名前を入力してください。");
   }
-});
+}
+
+// ページが読み込まれたときの処理
+window.onload = function() {
+  // ロゴマークを設定
+  const logo = document.getElementById("logo");
+  logo.src = "sdalogo.png";
+  logo.width = 200;
+  logo.height = 200;
+
+  // 募金総額を表示
+  document.getElementById("total-donations").innerHTML = totalDonations.toLocaleString();
+
+  // メーターを設定
+  const meter = document.getElementById("meter");
+  meter.max = 100;
+  meter.value = 0;
+
+  // 3〜10秒ごとに募金総額を更新する
+  setInterval(function() {
+    const amount = generateDonationAmount();
+    updateTotalDonations(amount);
+  }, Math.floor(Math.random() * 7000) + 3000); // 3〜10秒のランダムな秒数
+};

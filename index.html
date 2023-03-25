@@ -1,62 +1,34 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>シン・スダトラマン クラウドファンディング</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <div class="container">
-      <img src="sdalogo.png" alt="シン・スダトラマン">
-      <nav>
-        <ul>
-          <li><a href="#">ホーム</a></li>
-          <li><a href="#">ストーリー</a></li>
-          <li><a href="#">キャスト</a></li>
-          <li><a href="#">ニュース</a></li>
-          <li><a href="#">お問い合わせ</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <section class="banner">
-      <div class="container">
-        <h1>自主制作映画「シン・スダトラマン」を応援してください！</h1>
-        <p>現在の募金総額：<span id="total-donations"></span>円</p>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>シン・スダトラマン クラウドファンディング</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <header>
+      <img src="sdalogo.png" alt="シン・スダトラマン ロゴ">
+      <h1>シン・スダトラマン クラウドファンディング</h1>
+    </header>
+    
+    <main>
+      <h2>現在の募金総額</h2>
+      <div id="total-donation">334円</div>
+      <p>寄付金額を入力してください:</p>
+      <form id="donation-form">
+        <input type="number" id="donation-amount" name="donation-amount" placeholder="金額">
+        <input type="text" id="name" name="name" placeholder="名前">
+        <input type="submit" value="寄付する">
+      </form>
+      <div id="meter-container">
+        <div id="meter-fill"></div>
+        <div id="meter-label"></div>
       </div>
-    </section>
-    <section class="donation">
-      <div class="container">
-        <h2>募金する</h2>
-        <form>
-          <div>
-            <label for="donation-amount">寄付額（円）</label>
-            <input type="number" id="donation-amount" name="donation-amount" min="1">
-          </div>
-          <div>
-            <label for="donation-name">お名前</label>
-            <input type="text" id="donation-name" name="donation-name">
-          </div>
-          <button type="submit" id="donate-button">寄付する</button>
-        </form>
-      </div>
-    </section>
-    <section class="meter">
-      <div class="container">
-        <div class="meter-bar">
-          <div class="meter-progress"></div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <div class="container">
-      <p>© 2023 シン・スダトラマン製作委員会</p>
-    </div>
-  </footer>
-  <script src="script.js"></script>
-</body>
+    </main>
+    
+    <footer>
+      <p>© 2023 シン・スダトラマン. All rights reserved.</p>
+    </footer>
+  </body>
 </html>

@@ -21,12 +21,15 @@ function updateMeter(amount) {
   document.getElementById("meter-value").innerHTML = meterValue.toFixed(2) + "%";
 }
 
+
 // 寄付ボタンがクリックされたときの処理
 function donate() {
-  const amount = parseInt(document.getElementById("donation-amount").value);
+  const amountInput = document.getElementById("donation-amount");
+  const amount = parseInt(amountInput.value);
   const name = document.getElementById("name").value;
   if (!isNaN(amount) && name) {
     updateTotalDonations(amount);
+    amountInput.value = ""; // 入力フィールドをクリア
     alert(name + "さん、" + amount.toLocaleString() + "円の寄付ありがとうございます！");
   } else {
     alert("金額と名前を入力してください。");
@@ -35,6 +38,17 @@ function donate() {
 
 // ページが読み込まれたときの処理
 window.onload = function() {
+  // ...
+
+  // 寄付ボタンにイベントリスナーを設定
+  const donateButton = document.getElementById("donate-button");
+  donateButton.addEventListener("click", donate);
+
+  // ...
+};
+
+
+
   // ロゴマークを設定
   const logo = document.getElementById("logo");
   logo.src = "sdalogo.png";

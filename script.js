@@ -1,25 +1,39 @@
-// 寄付するボタンの要素を取得
-const donateButton = document.getElementById("donate-button");
+window.addEventListener("DOMContentLoaded", function() {
+	// 募金総額を表示する要素を取得
+	const totalElement = document.getElementById("total");
+	// メーターを表示する要素を取得
+	const meterElement = document.getElementById("meter");
+	// 寄付フォームを取得
+	const formElement = document.querySelector("form");
+	// 寄付ボタンを取得
+	const donateButton = document.getElementById("donate");
 
-// 寄付するボタンがクリックされたときの処理を登録
-donateButton.addEventListener("click", function() {
-  // いくら寄付するかの入力欄の要素を取得
-  const amountInput = document.getElementById("donation-amount");
+	// 現在の募金総額
+	let totalAmount = 334;
 
-  // 入力された寄付金額を取得
-  const donationAmount = parseInt(amountInput.value, 10);
+	// 募金総額を表示
+	totalElement.textContent = totalAmount;
 
-  // 現在の寄付総額を取得
-  const currentTotal = parseInt(totalDonationElement.textContent, 10);
+	// メーターを更新
+	updateMeter(totalAmount);
 
-  // 新しい寄付総額を計算
-  const newTotal = currentTotal + donationAmount;
+	// 寄付フォームが送信されたときの処理
+	formElement.addEventListener("submit", function(event) {
+		event.preventDefault();
+		const name = document.getElementById("name").value;
+		const amount = Number(document.getElementById("amount").value);
+		// 寄付金額を加算
+		totalAmount += amount;
+		// 募金総額を更新
+		totalElement.textContent = totalAmount;
+		// メーターを更新
+		updateMeter(totalAmount);
+		// フォームをリセット
+		formElement.reset();
+		alert(name + "さん、" + amount + "円の寄付ありがとうございました！");
+	});
 
-  // 寄付総額を更新
-  totalDonationElement.textContent = newTotal.toLocaleString();
-
-  // メーターバーを更新
-  const meterBar = document.getElementById("meter-bar");
-  const meterWidth = (newTotal / 100000) * 100; // 最大値を100,000円として計算
-  meterBar.style.width = meterWidth + "%";
-});
+	// メーターを更新する関数
+	function updateMeter(totalAmount) {
+		// メーターの長さを更新
+		const meterWidth = Math.min(totalAmount

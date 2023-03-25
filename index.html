@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>シン・スダトラマン　クラウドファンディング</title>
-  <link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<title>シン・スダトラマン　クラウドファンディング</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="sdalogo.png" alt="シン・スダトラマン" width="200">
-    </div>
-    <div class="donate-form">
-      <label for="donation-amount">いくら寄付しますか？</label>
-      <input type="number" id="donation-amount" name="donation-amount" value="334" min="334">
-      <button id="donate-button">寄付する</button>
-    </div>
-  </header>
-  <main>
-    <div class="meter">
-      <div class="meter-bar" id="meter-bar"></div>
-      <div class="meter-text">現在の寄付総額：<span id="total-donation"></span>円</div>
-    </div>
-  </main>
-  <script src="script.js"></script>
+	<header>
+		<div class="container">
+			<h1>シン・スダトラマン　クラウドファンディング</h1>
+			<img src="sdalogo.png" alt="ロゴ">
+		</div>
+	</header>
+	<main>
+		<div class="container">
+			<p>現在の募金総額：<span id="total">334</span>円</p>
+			<div id="meter"></div>
+			<form>
+				<label for="name">名前：</label>
+				<input type="text" id="name" name="name" placeholder="お名前を入力してください" required>
+				<label for="amount">寄付金額：</label>
+				<input type="number" id="amount" name="amount" placeholder="いくら寄付しますか？" min="0" step="1" required>
+				<button id="donate">寄付する</button>
+			</form>
+		</div>
+	</main>
+	<footer>
+		<div class="container">
+			<p>&copy;2023 シン・スダトラマン　製作委員会</p>
+		</div>
+	</footer>
+	<script src="script.js"></script>
 </body>
 </html>

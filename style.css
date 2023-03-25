@@ -1,115 +1,165 @@
+/* ページ全体のスタイル */
 body {
+  margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+/* ヘッダーのスタイル */
+header {
   background-color: #f2f2f2;
-}
-
-#header {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#logo {
-  width: 200px;
-  margin: 0 auto;
-  display: block;
-}
-
-#donate-section {
-  background-color: #fff;
-  padding: 20px;
-  margin: 20px;
-  text-align: center;
-}
-
-#donate-amount {
-  margin-bottom: 10px;
-}
-
-#donate-input {
+/* ヘッダーのロゴのスタイル */
+#header-logo {
   width: 100px;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  text-align: center;
 }
 
+/* メインコンテンツのスタイル */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 募金フォームのスタイル */
+#donation-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+/* 募金フォームの入力欄のスタイル */
+#donate-input {
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+/* 募金フォームのボタンのスタイル */
 #donate-button {
-  background-color: #008CBA;
+  padding: 10px 20px;
+  background-color: #1abc9c;
   color: #fff;
   border: none;
-  padding: 10px 20px;
   border-radius: 5px;
-  margin-left: 10px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-#donor-name {
-  margin-bottom: 10px;
+/* 募金フォームのボタンのマウスオーバー時のスタイル */
+#donate-button:hover {
+  background-color: #16a085;
 }
 
-#donor-input {
-  width: 200px;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  text-align: center;
+/* 募金フォームの入力エラー時のスタイル */
+.donation-form-error {
+  border: 1px solid red;
 }
 
-#meter-container {
-  width: 80%;
-  margin: 0 auto;
+/* 募金フォームの入力エラーメッセージのスタイル */
+.donation-form-error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* 募金メーターのスタイル */
+#donation-meter {
+  height: 30px;
+  border-radius: 15px;
+  background-color: #f2f2f2;
   position: relative;
-  height: 60px;
-  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
-#meter {
+/* 募金メーターのカバーのスタイル */
+#donation-meter-cover {
   height: 100%;
-  background-color: #ddd;
-  border-radius: 30px;
-  position: relative;
-  overflow: hidden;
-}
-
-#meter .progress {
-  height: 100%;
-  background-color: #008CBA;
-  border-radius: 30px;
+  border-radius: 15px;
+  background-color: #1abc9c;
   position: absolute;
   top: 0;
   left: 0;
-  animation: meter 5s ease-in-out;
+  width: 0;
+  transition: width 1s ease;
 }
 
-@keyframes meter {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-#meter .amount {
+/* 募金メーターの達成率のスタイル */
+#donation-meter-percentage {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
-  color: #008CBA;
-}
-
-#meter .percentage {
-  position: absolute;
-  top: 50%;
-  right: 0;
   transform: translateY(-50%);
-  font-size: 20px;
-  color: #008CBA;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
 }
 
-#footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
+/* 募金
+
+
+/* 寄付するボタン */
+.donate-btn {
+  background-color: #ff9f43;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.2rem;
   margin-top: 20px;
+  transition: background-color 0.3s ease-in-out;
+}
+.donate-btn:hover {
+  background-color: #ff7f50;
+}
+
+/* モーダル */
+.modal {
+  display: none; /* 初期状態では非表示 */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* 透明度50%の黒 */
+}
+
+/* モーダル内のコンテンツ */
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+}
+
+/* モーダル内の閉じるボタン */
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

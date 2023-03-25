@@ -1,42 +1,35 @@
-const meterFill = document.getElementById("meterFill");
-const progressBar = document.getElementById("progressBar");
-const donateButton = document.getElementById("donateButton");
-const donationInput = document.getElementById("donationInput");
-const nameLabel = document.getElementById("nameLabel");
-const nameInput = document.getElementById("nameInput");
-const logo = document.getElementById("logo");
+// DOM Elements
+const totalDonation = document.getElementById('total-donation');
+const donationForm = document.getElementById('donation-form');
+const donationAmount = document.getElementById('donation-amount');
+const donorName = document.getElementById('donor-name');
+const meterFill = document.getElementById('meter-fill');
+const meterLabel = document.getElementById('meter-label');
 
-let totalDonation = 334;
+// Initial values
+let donationTotal = 334;
+let donationGoal = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+meterLabel.textContent = `${donationTotal}/${donationGoal}`;
 
-function addDonation() {
-  const donation = parseFloat(donationInput.value);
-  const name = nameInput.value;
+// Add random donation amount after a random delay
+setTimeout(() => {
+  const randomAmount = Math.floor(Math.random() * (6482 - 34 + 1)) + 34;
+  donationTotal += randomAmount;
+  totalDonation.textContent = `¥${donationTotal.toLocaleString()}`;
+  meterFill.style.width = `${(donationTotal/donationGoal)*100}%`;
+  meterLabel.textContent = `${donationTotal.toLocaleString()}/${donationGoal.toLocaleString()}`;
+}, Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000);
 
-  if (donation <= 0) {
-    alert("寄付する金額は1円以上でなければなりません。");
-    return;
+// Add event listener to the donation form
+donationForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const donation = Number(donationAmount.value);
+  if (donation && donorName.value) {
+    donationTotal += donation;
+    totalDonation.textContent = `¥${donationTotal.toLocaleString()}`;
+    meterFill.style.width = `${(donationTotal/donationGoal)*100}%`;
+    meterLabel.textContent = `${donationTotal.toLocaleString()}/${donationGoal.toLocaleString()}`;
+    donationAmount.value = '';
+    donorName.value = '';
   }
-
-  totalDonation += donation;
-  updateMeter(totalDonation);
-  updateProgressBar(totalDonation);
-  clearInput();
-}
-
-function clearInput() {
-  donationInput.value = "";
-  nameInput.value = "";
-}
-
-function updateMeter(totalDonation) {
-  meterFill.style.width = `${totalDonation / 100}%`;
-  meterFill.textContent = `¥${totalDonation.toLocaleString()}`;
-}
-
-function updateProgressBar(totalDonation) {
-  const maxDonation = 6482;
-  const percentage = (totalDonation / maxDonation) * 100;
-  progressBar.style.width = `${percentage}%`;
-}
-
-donateButton.addEventListener("click", addDonation);
+});

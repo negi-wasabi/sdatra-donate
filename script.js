@@ -1,42 +1,73 @@
 // 寄付金額をランダムに生成する関数
-function generateRandomAmount() {
-  // 最初の金額を334円に設定
-  let amount = 334;
-  // 3~10秒のランダムな秒数を生成
-  const seconds = Math.floor(Math.random() * 8) + 3;
-  // 指定された秒数だけ待機し、その間にランダムな金額を生成する
-  setTimeout(function() {
-    amount += Math.floor(Math.random() * 6449) + 34;
-    // 募金総額を更新する
-    updateTotalAmount(amount);
-  }, seconds * 1000);
+function generateDonationAmount() {
+  return Math.floor(Math.random() * 6450) + 34;
 }
 
-// 募金総額を更新する関数
-function updateTotalAmount(amount) {
-  // 募金総額を更新する
-  const totalAmount = document.getElementById("total-amount");
-  totalAmount.textContent = amount.toLocaleString() + "円";
+// ページロード時に寄付金額を更新する
+window.addEventListener('load', function() {
+  const donationAmount = document.querySelector('#total-amount');
+  const initialAmount = 334;
+  let totalAmount = initialAmount;
+  donationAmount.textContent = `¥${totalAmount.toLocaleString()}`;
+  setInterval(function() {
+    const donation = generateDonationAmount();
+    totalAmount += donation;
+    donationAmount.textContent = `¥${totalAmount.toLocaleString()}`;
+  }, Math.floor(Math.random() * (10000 - 3000)) + 3000); // ランダムな秒数で寄付金額を更新する
+});
 
-  // メーターを更新する
-  const meter = document.getElementById("meter");
-  const percentage = Math.min((amount / 3000000000) * 100, 100);
-  meter.style.width = percentage + "%";
-  meter.textContent = percentage.toFixed(2) + "%";
+// 寄付ボタンを押したときの処理
+const donateButton = document.querySelector('#donate-btn');
+donateButton.addEventListener('click', function() {
+  const donationAmount = parseInt(document.querySelector('#donate-num').value);
+  const name = document.querySelector('#name-input').value;
+  const donationMeter = document.querySelector('#donation-meter');
+  let totalAmount = parseInt(document.querySelector('#total-amount').textContent.replace('¥', '').replace(',', ''));
+  totalAmount += donationAmount;
+  document.querySelector('#total-amount').textContent = `¥${totalAmount.toLocaleString()}`;
+  document.querySelector('#donate-num').value = '';
+  document.querySelector('#name-input').value = '';
+  donationMeter.style.width = `${Math.min(100, totalAmount / 3000000000 * 100)}%`;
+  donationMeter.textContent = `${Math.min(100, totalAmount / 3000000000 * 100).toFixed(2)}%`;
+  const newDonor = document.createElement('li');
+  newDonor.textContent = `${name}: ¥${donationAmount.toLocaleString()}`;
+  const donorList = document.querySelector('#donor-list');
+  donorList.prepend(newDonor);
+});
+
+// 寄付金額をランダムに生成する関数
+function generateDonationAmount() {
+  return Math.floor(Math.random() * 6450) + 34;
 }
 
-// 寄付するボタンをクリックしたときに呼ばれる関数
-function donate() {
-  // 入力された金額を取得する
-  const donateNum = document.getElementById("donate-num").value;
-  const amount = parseInt(donateNum);
+// ページロード時に寄付金額を更新する
+window.addEventListener('load', function() {
+  const donationAmount = document.querySelector('#total-amount');
+  const initialAmount = 334;
+  let totalAmount = initialAmount;
+  donationAmount.textContent = `¥${totalAmount.toLocaleString()}`;
+  setInterval(function() {
+    const donation = generateDonationAmount();
+    totalAmount += donation;
+    donationAmount.textContent = `¥${totalAmount.toLocaleString()}`;
+  }, Math.floor(Math.random() * (10000 - 3000)) + 3000); // ランダムな秒数で寄付金額を更新する
+});
 
-  // 名前を取得する
-  const name = prompt("お名前を入力してください");
-
-  // 募金総額を更新する
-  updateTotalAmount(amount);
-}
-
-// ページが読み込まれたときに、ランダムな金額を生成する
-generateRandomAmount();
+// 寄付ボタンを押したときの処理
+const donateButton = document.querySelector('#donate-btn');
+donateButton.addEventListener('click', function() {
+  const donationAmount = parseInt(document.querySelector('#donate-num').value);
+  const name = document.querySelector('#name-input').value;
+  const donationMeter = document.querySelector('#donation-meter');
+  let totalAmount = parseInt(document.querySelector('#total-amount').textContent.replace('¥', '').replace(',', ''));
+  totalAmount += donationAmount;
+  document.querySelector('#total-amount').textContent = `¥${totalAmount.toLocaleString()}`;
+  document.querySelector('#donate-num').value = '';
+  document.querySelector('#name-input').value = '';
+  donationMeter.style.width = `${Math.min(100, totalAmount / 3000000000 * 100)}%`;
+  donationMeter.textContent = `${Math.min(100, totalAmount / 3000000000 * 100).toFixed(2)}%`;
+  const newDonor = document.createElement('li');
+  newDonor.textContent = `${name}: ¥${donationAmount.toLocaleString()}`;
+  const donorList = document.querySelector('#donor-list');
+  donorList.prepend(newDonor);
+});
